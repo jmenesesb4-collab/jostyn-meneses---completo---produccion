@@ -2,6 +2,8 @@ const selectDiasProduccion = document.getElementById('id-select-dias')
 const btnCargarProduccion = document.getElementById('id-btn-cargar-produccion')
 const btnPresentar = document.getElementById('id-btn-presentar-produccion')
 const txtPresentar = document.getElementById('id-listado-produccion')
+const btnProduccionTotal = document.getElementById('id-btn-produccion-total')
+const txtProduccionTotal = document.getElementById('id-txt-produccion-total')
 const btnMayorProduccion = document.getElementById('id-btn-mayor-produccion')
 const txtMayorProduccion = document.getElementById('id-txt-mayor-produccion')
 const btnMenorproduccion = document.getElementById('id-btn-menor-produccion')
@@ -27,6 +29,15 @@ btnCargarProduccion.addEventListener('click', function (e){
 btnPresentar.addEventListener('click',function (e) {
     txtPresentar.value = vectorProduccion.join(', ')
 })
+
+
+btnProduccionTotal.addEventListener('click', function(e){
+    const completo = produccioToptal()
+    
+
+    txtProduccionTotal.value = completo
+})
+
 
 btnMayorProduccion.addEventListener('click', function (e){
     const indice = mayorProduccion()
@@ -80,6 +91,13 @@ function cargarProduccion (dimension){
     }
 }
 
+function produccioToptal(){
+     let suma = 0
+     for(let i = 0; i < vectorProduccion.length; i++){
+        suma = suma + vectorProduccion[i]
+    }
+    return suma
+    }
 
 function mayorProduccion(){
     let mayor = 0
@@ -145,8 +163,9 @@ function mayorProduccion(){
     let promedio = suma / vectorProduccion.length
     
     let contador = 0
+    let critico = 100
     for(let i = 0 ; i < vectorProduccion.length; i++){
-        if(vectorProduccion[i] < promedio){
+        if(vectorProduccion[i] < critico){
         contador++
         }
     }
